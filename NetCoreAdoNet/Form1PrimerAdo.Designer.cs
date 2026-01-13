@@ -62,12 +62,13 @@
             // 
             // BtnRead
             // 
-            BtnRead.Location = new Point(12, 208);
+            BtnRead.Location = new Point(12, 180);
             BtnRead.Name = "BtnRead";
             BtnRead.Size = new Size(107, 56);
             BtnRead.TabIndex = 2;
             BtnRead.Text = "Read";
             BtnRead.UseVisualStyleBackColor = true;
+            BtnRead.Click += BtnRead_Click;
             // 
             // label1
             // 
@@ -122,10 +123,9 @@
             // 
             // lblConexion
             // 
-            lblConexion.AutoSize = true;
-            lblConexion.Location = new Point(17, 295);
+            lblConexion.Location = new Point(12, 239);
             lblConexion.Name = "lblConexion";
-            lblConexion.Size = new Size(88, 20);
+            lblConexion.Size = new Size(107, 97);
             lblConexion.TabIndex = 9;
             lblConexion.Text = "lblConexion";
             // 
