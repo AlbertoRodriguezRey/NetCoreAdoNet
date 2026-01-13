@@ -29,11 +29,18 @@ namespace NetCoreAdoNet
 
         private void BtnConectar_Click(object sender, EventArgs e)
         {
-            if (this.cn.State == ConnectionState.Closed)
+            try
             {
-                this.cn.Open();
-                this.lblConexion.BackColor = Color.LightGreen;
-                this.BtnConectar.Enabled = false;
+                if (this.cn.State == ConnectionState.Closed)
+                {
+                    this.cn.Open();
+                    this.lblConexion.BackColor = Color.LightGreen;
+                    this.BtnConectar.Enabled = false;
+                }
+            }
+            catch (SqlException ex) 
+            {
+                this.lblConexion.Text = "ERROR: " + ex.Message;
             }
         }
 
