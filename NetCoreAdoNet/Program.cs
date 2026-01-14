@@ -11,7 +11,7 @@ namespace NetCoreAdoNet
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form2BuscadorEmpleados());
+            Application.Run(new Form6UpdateSalasClases());
         }
     }
 }
