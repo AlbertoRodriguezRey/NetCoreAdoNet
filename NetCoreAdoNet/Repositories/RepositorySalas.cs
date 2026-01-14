@@ -54,5 +54,40 @@ namespace NetCoreAdoNet.Repositories
             this.com.Parameters.Clear();
             return registros;
         }
+
+        public async Task <List<string>> GetNombresSalasAsync()
+        {
+            string sql = "select distinct NOMBRE from SALA";
+            this.com.CommandType = CommandType.Text;
+            this.com.CommandText = sql;
+            await this.cn.OpenAsync();
+            this.reader = await this.com.ExecuteReaderAsync();
+            //CREAMOS LA COLECCION A DEVOLVER
+            List<string> salas = new List<string>();
+            while (await this.reader.ReadAsync())
+            {
+                string nombre = this.reader["NOMBRE"].ToString();
+                salas.Add(nombre);
+            }
+            await this.reader.CloseAsync();
+            await this.cn.CloseAsync();
+            return salas;
+        }
+
+        public async Task <int> UpdateSalaAsync(string newName, string Oldname)
+        {
+            string sql = "update SALA set NOMBRE=@newname where NOMBRE=@oldname";
+            SqlParameter pamNewName = new SqlParameter("@newname", newName);
+            SqlParameter pamOldName = new SqlParameter("@oldname", Oldname);
+            this.com.Parameters.Add(pamNewName);
+            this.com.Parameters.Add(pamOldName);
+            this.com.CommandType = CommandType.Text;
+            this.com.CommandText = sql;
+            await this.cn.OpenAsync();
+            int registros = await this.com.ExecuteNonQueryAsync();
+            await this.cn.CloseAsync();
+            this.com.Parameters.Clear();
+            return registros;
+        }
     }
 }
