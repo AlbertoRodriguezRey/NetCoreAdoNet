@@ -41,5 +41,51 @@ namespace NetCoreAdoNet.Repositories
             await this.cn.CloseAsync();
             return departamentos;
         }
+
+        public async Task CreateDepartamentosAsync(int id, string nombre, string localidad)
+        {
+            string sql = "insert into DEPT values (@id, @nombre, @localidad)";
+            SqlParameter pamId = new SqlParameter("@id", id);
+            SqlParameter pamNombre = new SqlParameter("@nombre", nombre);
+            SqlParameter pamLocalidad = new SqlParameter("@localidad", localidad);
+            this.com.Parameters.Add(pamId);
+            this.com.Parameters.Add(pamNombre);
+            this.com.Parameters.Add(pamLocalidad);
+
+            this.com.CommandType = CommandType.Text;
+            this.com.CommandText = sql;
+            await this.cn.OpenAsync();
+            await this.com.ExecuteNonQueryAsync();
+            await this.cn.CloseAsync();
+            this.com.Parameters.Clear();
+        }
+
+        public async Task UpdateDepartamentoAsync(int id, string nombre, string localidad)
+        {
+            string sql = "update DEPT set DNOMBRE=@nombre, LOC=@localidad where DEPT_NO=@id";
+            //TENEMOS UN METODO EN EL COMMAND QUE NOS PERMITE AÑADIR PARAMETROS
+            //SIN CREAR OBJETOS, SIEMPRE QUE SEAN DE TIPO PRIMITIVO
+            this.com.Parameters.AddWithValue("@id", id);
+            this.com.Parameters.AddWithValue("@nombre", nombre);
+            this.com.Parameters.AddWithValue("@localidad", localidad);
+            this.com.CommandType = CommandType.Text;
+            this.com.CommandText = sql;
+            await this.cn.OpenAsync();
+            await this.com.ExecuteNonQueryAsync();
+            await this.cn.CloseAsync();
+            this.com.Parameters.Clear();
+        }
+
+        public async Task DeleteDepartamentoAsync(int id)
+        {
+            string sql = "delete from DEPT where DEPT_NO=@id";
+            this.com.Parameters.AddWithValue("@id", id);
+            this.com.CommandType = CommandType.Text;
+            this.com.CommandText = sql;
+            await this.cn.OpenAsync();
+            await this.com.ExecuteNonQueryAsync();
+            await this.cn.CloseAsync();
+            this.com.Parameters.Clear();
+        }
     }
 }

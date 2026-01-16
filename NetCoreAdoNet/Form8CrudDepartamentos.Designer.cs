@@ -31,11 +31,11 @@
             label1 = new Label();
             lstDepartamentos = new ListBox();
             label2 = new Label();
-            textBox1 = new TextBox();
+            txtId = new TextBox();
             label3 = new Label();
-            textBox2 = new TextBox();
+            txtNombre = new TextBox();
             label4 = new Label();
-            textBox3 = new TextBox();
+            txtLocalidad = new TextBox();
             BtnInsertar = new Button();
             BtnModificar = new Button();
             BtnEliminar = new Button();
@@ -67,12 +67,12 @@
             label2.TabIndex = 2;
             label2.Text = "Id";
             // 
-            // textBox1
+            // txtId
             // 
-            textBox1.Location = new Point(393, 66);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(172, 27);
-            textBox1.TabIndex = 3;
+            txtId.Location = new Point(393, 66);
+            txtId.Name = "txtId";
+            txtId.Size = new Size(172, 27);
+            txtId.TabIndex = 3;
             // 
             // label3
             // 
@@ -83,12 +83,12 @@
             label3.TabIndex = 4;
             label3.Text = "Nombre";
             // 
-            // textBox2
+            // txtNombre
             // 
-            textBox2.Location = new Point(393, 150);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(172, 27);
-            textBox2.TabIndex = 5;
+            txtNombre.Location = new Point(393, 150);
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new Size(172, 27);
+            txtNombre.TabIndex = 5;
             // 
             // label4
             // 
@@ -99,12 +99,12 @@
             label4.TabIndex = 6;
             label4.Text = "Localidad";
             // 
-            // textBox3
+            // txtLocalidad
             // 
-            textBox3.Location = new Point(393, 236);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(172, 27);
-            textBox3.TabIndex = 7;
+            txtLocalidad.Location = new Point(393, 236);
+            txtLocalidad.Name = "txtLocalidad";
+            txtLocalidad.Size = new Size(172, 27);
+            txtLocalidad.TabIndex = 7;
             // 
             // BtnInsertar
             // 
@@ -114,6 +114,7 @@
             BtnInsertar.TabIndex = 8;
             BtnInsertar.Text = "Insertar";
             BtnInsertar.UseVisualStyleBackColor = true;
+            BtnInsertar.Click += BtnInsertar_Click;
             // 
             // BtnModificar
             // 
@@ -123,6 +124,7 @@
             BtnModificar.TabIndex = 9;
             BtnModificar.Text = "Modificar";
             BtnModificar.UseVisualStyleBackColor = true;
+            BtnModificar.Click += BtnModificar_Click;
             // 
             // BtnEliminar
             // 
@@ -132,6 +134,7 @@
             BtnEliminar.TabIndex = 10;
             BtnEliminar.Text = "Eliminar";
             BtnEliminar.UseVisualStyleBackColor = true;
+            BtnEliminar.Click += BtnEliminar_Click;
             // 
             // Form8CrudDepartamentos
             // 
@@ -141,11 +144,11 @@
             Controls.Add(BtnEliminar);
             Controls.Add(BtnModificar);
             Controls.Add(BtnInsertar);
-            Controls.Add(textBox3);
+            Controls.Add(txtLocalidad);
             Controls.Add(label4);
-            Controls.Add(textBox2);
+            Controls.Add(txtNombre);
             Controls.Add(label3);
-            Controls.Add(textBox1);
+            Controls.Add(txtId);
             Controls.Add(label2);
             Controls.Add(lstDepartamentos);
             Controls.Add(label1);
@@ -162,11 +165,11 @@
         private Label label1;
         private ListBox lstDepartamentos;
         private Label label2;
-        private TextBox textBox1;
+        private TextBox txtId;
         private Label label3;
-        private TextBox textBox2;
+        private TextBox txtNombre;
         private Label label4;
-        private TextBox textBox3;
+        private TextBox txtLocalidad;
         private Button BtnInsertar;
         private Button BtnModificar;
         private Button BtnEliminar;
