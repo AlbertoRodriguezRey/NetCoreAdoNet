@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 #region PROCEDIMIENTOS ALMACENADOS
 //create procedure SP_HOSPITALES
@@ -78,9 +79,33 @@ namespace NetCoreAdoNet
             int registros = await this.com.ExecuteNonQueryAsync();
             await this.cn.CloseAsync();
             this.com.Parameters.Clear();
+            await this.LoadPlantillaHospital(nombreHospital);
             MessageBox.Show("Registros modificados: " + registros);
         }
 
+        private async Task LoadPlantillaHospital(string nombreHospital)
+        {
+            string sql = "SP_PLANTILLA_HOSPITAL";
+            this.com.Parameters.AddWithValue("@nombre", nombreHospital);
+            this.com.CommandType = CommandType.StoredProcedure;
+            this.com.CommandText = sql;
+            await this.cn.OpenAsync();
+            this.reader = await this.com.ExecuteReaderAsync();
+            this.lstPlantilla.Items.Clear();
+            while (await this.reader.ReadAsync())
+            {
+                string apellido = this.reader["APELLIDO"].ToString();
+                string salario = this.reader["SALARIO"].ToString();
+                this.lstPlantilla.Items.Add(apellido + " - " + salario);
+            }
+            await this.reader.CloseAsync();
+            await this.cn.CloseAsync();
+            this.com.Parameters.Clear();
+        }
 
+        private void cmbHospitales_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.LoadPlantillaHospital(this.cmbHospitales.SelectedItem.ToString());
+        }
     }
 }

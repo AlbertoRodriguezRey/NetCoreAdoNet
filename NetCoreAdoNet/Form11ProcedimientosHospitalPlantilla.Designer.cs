@@ -53,6 +53,7 @@
             cmbHospitales.Name = "cmbHospitales";
             cmbHospitales.Size = new Size(121, 28);
             cmbHospitales.TabIndex = 1;
+            cmbHospitales.SelectedIndexChanged += cmbHospitales_SelectedIndexChanged;
             // 
             // label2
             // 
